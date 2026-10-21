@@ -76,6 +76,51 @@ header{position:absolute;z-index:8;top:0;left:0;right:0;padding:22px clamp(20px,
  .menu .menu-foliage.left{top:-18px;left:-43px}
  .menu .menu-foliage.right{bottom:-15px;right:-52px}
 }
+
+/* スマホ版：PC版のイラストの華やかさを保ちながら、文字と重ならないよう配置を調整 */
+@media (max-width: 850px){
+  .hero:before{background:linear-gradient(90deg,rgba(25,13,33,.53),rgba(31,15,40,.24) 65%,rgba(27,13,30,.06))}
+  .intro .image-corner{opacity:.86}
+}
+@media (max-width: 700px){
+  .hero{min-height:640px;min-height:88svh;background-position:56% center;padding:140px 20px 75px}
+  .hero .container{margin:0 auto;padding:0;max-width:540px;text-align:center}
+  .hero:before{background:linear-gradient(180deg,rgba(25,13,33,.19),rgba(25,13,33,.43) 36%,rgba(25,13,33,.39) 75%,rgba(25,13,33,.11))}
+  header{padding:18px 20px;gap:12px;flex-wrap:wrap;justify-content:center;text-align:center}
+  .nav{gap:16px;justify-content:center}
+  .hero .overline{font-size:17px;letter-spacing:.15em}
+  .hero h1{font-size:clamp(61px,14.4vw,96px);line-height:.98;margin:16px 0 20px}
+  .hero h1 span{font-size:.25em;letter-spacing:.13em;margin-top:15px}
+  .hero h2{font-size:clamp(19px,4.8vw,25px);line-height:1.6;margin:16px auto}
+  .hero p{font-size:13px;line-height:2.1}
+  .container{width:min(100% - 32px, 540px)}
+  .intro,.menu,.gifts,.guide{padding:100px 0 78px}
+  .intro .container{padding:10px 4px}
+  .intro .image-corner{width:clamp(155px,41vw,240px);left:-55px;top:-65px;opacity:.90}
+  .intro .right-illustration{width:clamp(130px,35vw,195px);right:-55px;bottom:-68px;opacity:.76}
+  .menu .menu-foliage{width:clamp(155px,42vw,230px);opacity:.94}
+  .menu .menu-foliage.left{top:-34px;left:-55px}
+  .menu .menu-foliage.right{bottom:-37px;right:-62px}
+  .menu .container{isolation:isolate}
+  .menu .center{padding:0 4px 12px}
+  .menu .center .heading,.menu .center .introtext{position:relative;z-index:3}
+  .heading{font-size:clamp(24px,6.2vw,31px);line-height:1.55}
+  .introtext{font-size:13px;line-height:2.25}
+  .menu-card{padding:32px 18px}
+  .gift-figure{width:min(100%,480px);margin:0 auto 8px}
+  .guide .image-corner{width:clamp(145px,40vw,225px);right:-54px;top:-60px;opacity:.85}
+  .guide .center{position:relative;z-index:2}
+  .guide-item{padding:28px 20px}
+  .end .end-deco{width:230px;bottom:-75px;left:-88px}
+}
+@media(max-width:390px){
+  .hero{padding-top:160px}
+  .hero h1{font-size:58px}
+  .nav{font-size:10px;gap:10px}
+  .menu .menu-foliage{width:155px}
+  .intro .image-corner{width:155px}
+}
+
 </style></head><body>
 <header><a class="brand" href="#top">heal</a><nav class="nav"><a href="#menu">SPECIAL MENU</a><a href="#gift">PRESENTS</a><a href="#guide">PLAN GUIDE</a></nav></header>
 <section class="hero" id="top"><div class="container"><div class="overline">A MAGICAL CHRISTMAS AT HEAL</div><h1>Merry<br/>Christmas<span>CHRISTMAS EVENT 2026</span></h1><h2>クリスマスだけの、贅沢なひととき</h2><p>日頃のご愛顧に感謝を込めて、<br/>心と身体をゆったりいたわるクリスマスイベントをご用意しました。<br/>この冬だけの特別メニューとプレゼントを、どうぞお楽しみください。</p><a class="button" href="#menu">EVENT DETAILS ↓</a></div></section>
