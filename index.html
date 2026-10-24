@@ -1060,10 +1060,254 @@
     padding: 30px 18px;
   }
 }
+
+    /* =====================================================
+       CHRISTMAS SPECIAL MENU — current HTML class names
+       Existing page sections and imagery are unchanged.
+       ===================================================== */
+    .menu {
+      position: relative;
+      padding: 110px 20px 120px;
+      background:
+        radial-gradient(circle at 18% 15%, rgba(255, 255, 255, .62), transparent 34%),
+        linear-gradient(180deg, #fff8ed 0%, #faefe3 60%, #f5e4d8 100%);
+      overflow: hidden;
+    }
+
+    .menu > .container {
+      width: min(1240px, calc(100% - 20px));
+      margin-inline: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .menu-header {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 50px;
+    }
+
+    .menu-kicker {
+      display: inline-block;
+      color: #a06a31;
+      font: 600 20px 'Cormorant Garamond', serif;
+      letter-spacing: .18em;
+      margin-bottom: 12px;
+    }
+
+    .menu-title {
+      font-family: 'Kaisei Tokumin', 'Shippori Mincho B1', serif;
+      font-weight: 700;
+      font-size: clamp(29px, 3.6vw, 46px);
+      line-height: 1.5;
+      letter-spacing: .06em;
+      color: #4b1735;
+      margin: 0;
+    }
+
+    .menu-line {
+      width: 90px;
+      height: 2px;
+      margin: 22px auto 26px;
+      background: linear-gradient(90deg, transparent, #cda35c 20%, #cda35c 80%, transparent);
+    }
+
+    .menu-subtext {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: clamp(14px, 1.35vw, 18px);
+      font-weight: 600;
+      line-height: 2.1;
+      color: #442638;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+      gap: 30px;
+    }
+
+    .menu .menu-card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-width: 0;
+      min-height: 410px;
+      padding: 50px 32px 44px;
+      border: 1px solid rgba(205, 163, 92, .65);
+      background: linear-gradient(180deg, #fffefa 0%, #fffbf5 100%);
+      box-shadow: 0 16px 35px rgba(77, 40, 51, .08);
+      color: #3c2835;
+    }
+
+    .menu .menu-card::before {
+      content: '';
+      position: absolute;
+      inset: 13px;
+      border: 1px solid rgba(205, 163, 92, .34);
+      pointer-events: none;
+    }
+
+    .menu .menu-card::after {
+      content: '✦  ✦  ✦';
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #d0a561;
+      font-size: 13px;
+      letter-spacing: .24em;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .menu .menu-card-badge {
+      display: inline-block;
+      align-self: center;
+      margin: 15px 0 18px;
+      padding: 5px 18px;
+      border-radius: 999px;
+      background: linear-gradient(115deg, #fff5df, #f9e7bc);
+      color: #94642f;
+      font: 600 18px 'Cormorant Garamond', serif;
+      letter-spacing: .12em;
+    }
+
+    .menu .menu-plan {
+      margin: 8px 0 6px;
+      font-family: 'Kaisei Tokumin', 'Shippori Mincho B1', serif;
+      font-size: clamp(24px, 2.6vw, 34px);
+      font-weight: 700;
+      line-height: 1.5;
+      color: #311628;
+    }
+
+    .menu .menu-card p.menu-desc {
+      margin: 6px 0 14px;
+      font-size: clamp(14px, 1.25vw, 17px);
+      color: #4a3040;
+    }
+
+    .menu .menu-card p.menu-price {
+      margin: 16px 0 8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(64px, 6vw, 90px);
+      font-weight: 700;
+      line-height: 1.12;
+      color: #982b50;
+    }
+
+    .menu .menu-card p.menu-price small {
+      margin-left: 5px;
+      font-family: 'Shippori Mincho B1', serif;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .menu .menu-card p.menu-note {
+      margin: 6px 0 0;
+      font-size: clamp(13px, 1.15vw, 16px);
+      line-height: 1.9;
+      color: #4f3543;
+    }
+
+    .menu-accent-left,
+    .menu-accent-right {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      width: clamp(150px, 23vw, 320px);
+    }
+
+    .menu-accent-left {
+      top: -35px;
+      left: -62px;
+    }
+
+    .menu-accent-right {
+      right: -70px;
+      bottom: -45px;
+    }
+
+    .menu-accent-left img,
+    .menu-accent-right img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .menu-accent-right img {
+      transform: rotate(180deg);
+    }
+
+    @media (max-width: 850px) {
+      .menu {
+        padding: 94px 12px 90px;
+      }
+      .menu-grid {
+        grid-template-columns: 1fr;
+        max-width: 570px;
+        margin: 0 auto;
+        gap: 24px;
+      }
+      .menu-header {
+        margin-bottom: 32px;
+      }
+      .menu .menu-card {
+        min-height: 360px;
+        padding: 44px 24px 36px;
+      }
+      .menu-accent-left,
+      .menu-accent-right {
+        width: clamp(115px, 29vw, 180px);
+        opacity: .86;
+      }
+      .menu-accent-left {
+        top: -20px;
+        left: -35px;
+      }
+      .menu-accent-right {
+        right: -36px;
+        bottom: -18px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .menu-title {
+        font-size: clamp(27px, 7vw, 35px);
+      }
+      .menu-kicker {
+        font-size: 17px;
+      }
+      .menu-subtext {
+        font-size: 14px;
+      }
+      .menu .menu-card {
+        min-height: 350px;
+        padding: 42px 20px 32px;
+      }
+      .menu .menu-card-badge {
+        font-size: 16px;
+      }
+      .menu .menu-plan {
+        font-size: 26px;
+      }
+      .menu .menu-card p.menu-price {
+        font-size: clamp(60px, 15vw, 74px);
+      }
+      .menu .menu-card p.menu-price small {
+        font-size: 16px;
+      }
+    }
+
   </style>
 </head>
-
-
 <body>
   <header>
     <a class="brand" href="#top">heal</a>
