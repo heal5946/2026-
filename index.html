@@ -1306,6 +1306,95 @@
       }
     }
 
+  
+
+    /* ============================================================
+       HEAL CHRISTMAS 2026 | SCROLL MOTION
+       Each section animates once when it enters the viewport.
+       Existing colors, dimensions, text, and image references stay intact.
+       ============================================================ */
+    .motion-enabled .motion-item {
+      opacity: 0;
+      translate: 0 25px;
+      transition:
+        opacity 950ms cubic-bezier(.2, .7, .2, 1),
+        translate 950ms cubic-bezier(.2, .7, .2, 1),
+        filter 950ms ease;
+      transition-delay: var(--motion-delay, 0ms);
+      will-change: opacity, translate;
+    }
+
+    .motion-enabled .motion-item.motion-left { translate: -48px 0; }
+    .motion-enabled .motion-item.motion-right { translate: 48px 0; }
+    .motion-enabled .motion-item.motion-soft { translate: 0 14px; }
+    .motion-enabled .motion-item.motion-gift { translate: 0 36px; filter: brightness(.85); }
+    .motion-enabled .motion-item.motion-visible {
+      opacity: 1;
+      translate: 0 0;
+      filter: none;
+      will-change: auto;
+    }
+
+    /* Top: a gentle reveal on arrival, without changing the hero image. */
+    .motion-enabled .hero .motion-item { transition-duration: 1150ms; }
+    .motion-enabled .hero .overline { --motion-delay: 80ms; }
+    .motion-enabled .hero h1 { --motion-delay: 240ms; }
+    .motion-enabled .hero h2 { --motion-delay: 420ms; }
+    .motion-enabled .hero p { --motion-delay: 550ms; }
+    .motion-enabled .hero .button { --motion-delay: 680ms; }
+
+    /* Section titles and small gold separators appear naturally. */
+    .motion-enabled .intro .goldline,
+    .motion-enabled .menu .menu-line,
+    .motion-enabled .gifts .goldline,
+    .motion-enabled .guide .goldline {
+      transform-origin: center;
+    }
+
+    /* Menu: two cards enter from opposite sides, prices follow. */
+    .motion-enabled .menu-card:nth-child(1) { --motion-delay: 70ms; }
+    .motion-enabled .menu-card:nth-child(2) { --motion-delay: 190ms; }
+    .motion-enabled .menu-card .menu-price {
+      opacity: 0;
+      translate: 0 12px;
+      transition: opacity 700ms ease, translate 700ms ease;
+      transition-delay: 450ms;
+    }
+    .motion-enabled .menu-card.motion-visible .menu-price {
+      opacity: 1;
+      translate: 0 0;
+    }
+
+    /* Gifts and plan cards: sequential entrance; no infinite animation. */
+    .motion-enabled .giftcard:nth-child(1),
+    .motion-enabled .guide-item:nth-child(1) { --motion-delay: 60ms; }
+    .motion-enabled .giftcard:nth-child(2),
+    .motion-enabled .guide-item:nth-child(2) { --motion-delay: 190ms; }
+    .motion-enabled .guide-item:nth-child(3) { --motion-delay: 320ms; }
+    .motion-enabled .gift-figure.motion-visible {
+      filter: drop-shadow(0 20px 25px #170c1d66);
+    }
+
+    /* Keep mobile transitions comfortable and avoid sideways overflow. */
+    @media (max-width: 700px) {
+      .motion-enabled .motion-item { translate: 0 19px; transition-duration: 750ms; }
+      .motion-enabled .motion-item.motion-left { translate: -18px 0; }
+      .motion-enabled .motion-item.motion-right { translate: 18px 0; }
+      .motion-enabled .motion-item.motion-visible { translate: 0 0; }
+    }
+
+    /* Accessibility: remove every reveal effect for reduced-motion users. */
+    @media (prefers-reduced-motion: reduce) {
+      .motion-enabled .motion-item,
+      .motion-enabled .menu-card .menu-price {
+        opacity: 1 !important;
+        translate: none !important;
+        filter: none;
+        transition: none !important;
+      }
+      .motion-enabled .gift-figure { filter: drop-shadow(0 20px 25px #170c1d66); }
+    }
+
   </style>
 </head>
 <body>
@@ -1447,6 +1536,54 @@
       © 2026 heal. All rights reserved.
     </div>
   </footer>
+
+  <script>
+    // Section-by-section scroll motion (one-time, lightweight and accessible).
+    (() => {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reducedMotion || !('IntersectionObserver' in window)) return;
+
+      const targets = [
+        ['.hero .overline, .hero h1, .hero h2, .hero p, .hero .button', 'motion-soft'],
+        ['.intro .image-corner', 'motion-left'],
+        ['.intro .right-illustration', 'motion-right'],
+        ['.intro .center > *', 'motion-soft'],
+        ['.menu .menu-accent-left', 'motion-left'],
+        ['.menu .menu-accent-right', 'motion-right'],
+        ['.menu-header > *', 'motion-soft'],
+        ['.menu-grid .menu-card:first-child', 'motion-left'],
+        ['.menu-grid .menu-card:last-child', 'motion-right'],
+        ['.gifts .center > *', 'motion-soft'],
+        ['.gifts .gift-figure', 'motion-gift'],
+        ['.giftcards .giftcard', 'motion-soft'],
+        ['.gifts .note', 'motion-soft'],
+        ['.guide .image-corner', 'motion-right'],
+        ['.guide .center > *', 'motion-soft'],
+        ['.guide-grid .guide-item', 'motion-soft'],
+        ['.end .container > *', 'motion-soft'],
+        ['.end .end-deco', 'motion-soft']
+      ];
+
+      const elements = new Set();
+      for (const [selector, effect] of targets) {
+        document.querySelectorAll(selector).forEach((element) => {
+          element.classList.add('motion-item', effect);
+          elements.add(element);
+        });
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add('motion-visible');
+          observer.unobserve(entry.target);
+        }
+      }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+
+      document.documentElement.classList.add('motion-enabled');
+      elements.forEach((element) => observer.observe(element));
+    })();
+  </script>
 </body>
 
 </html>
